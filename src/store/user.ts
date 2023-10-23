@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { login } from '@/service/auth'
 import { User } from '@/types'
 
 interface State {

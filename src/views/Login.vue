@@ -34,9 +34,8 @@ const onLogin = async () => {
       toast.success(response?.message)
       router.replace('/')
     }
-  } catch (error) {
-    console.error('error', error)
-    toast.error(error?.response?.data?.message)
+  } catch (error: any) {
+    toast.error(error?.message)
   }
 }
 
