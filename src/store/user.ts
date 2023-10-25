@@ -5,14 +5,16 @@ interface State {
   user?: User
 }
 
-export const useAuthStore = defineStore('auth', {
+export const useUserStore = defineStore('user', {
   state: (): State => {
     return {
       user: undefined,
     }
   },
   actions: {
-    async saveUser() {},
+    async saveUser(user: User) {
+      this.user = user
+    },
   },
   getters: {},
 })

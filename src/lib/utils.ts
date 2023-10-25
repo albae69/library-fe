@@ -5,3 +5,13 @@ import { twMerge } from 'tailwind-merge'
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+
+export function isAuthenticated() {
+  let token = localStorage.getItem('token')
+
+  if (token) {
+    return true
+  }
+
+  return false
+}

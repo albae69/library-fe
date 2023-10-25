@@ -14,6 +14,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { login } from '@/service/auth'
 import { useRouter } from 'vue-router'
+import { isAuthenticated } from '@/lib/utils'
 
 const router = useRouter()
 
@@ -35,13 +36,13 @@ const onLogin = async () => {
       router.replace('/')
     }
   } catch (error: any) {
-    toast.error(error?.message)
+    toast.error(error?.response?.data?.message)
   }
 }
 
 onMounted(() => {
   // if user has logged in, redirect to home
-  if (localStorage.getItem('token') != null) {
+  if (isAuthenticated()) {
     router.replace('/')
   }
 })
