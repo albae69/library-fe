@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
 import { useToast } from 'vue-toastification'
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 
+// local files
 import { Input } from '@/components/ui/input'
 import {
   Card,
@@ -13,7 +15,6 @@ import {
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { register } from '@/service/auth'
-import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
