@@ -49,17 +49,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="min-h-screen mx-auto justify-center items-center">
+  <section className="min-h-screen mx-auto justify-center items-center">
     <!-- Header -->
     <Header />
     <!-- Header -->
 
     <!-- List Books -->
-    <div
-      v-if="books.length"
-      class="flex flex-col lg:flex-row lg:flex-wrap lg:gap-4 items-center lg:justify-center my-6 lg:px-[120px] max-w-screen-2xl mx-auto">
-      <div v-for="book in books" class="w-full px-4 mb-4 lg:px-0">
-        <Card class="w-full md:w-[350px] shadow-lg">
+    <div v-if="books.length" class="">
+      <div v-for="book in books" class="px-4 max-w-screen-2xl mx-auto my-4">
+        <Card class="w-full shadow-lg mb-4">
           <CardHeader>
             <CardTitle>{{ book.title }}</CardTitle>
             <CardDescription>{{ book.author }}</CardDescription>
@@ -71,7 +69,7 @@ onMounted(() => {
     </div>
 
     <div v-else class="text-center pt-4">
-      <p v-if="books.length">No Books.</p>
+      <p v-if="books.length == 0">No Books.</p>
       <p v-else>loading...</p>
     </div>
 
