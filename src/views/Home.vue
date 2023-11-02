@@ -10,10 +10,11 @@ import { getUser } from '@/service/user'
 import { Button } from '@/components/ui/button'
 import { Header } from '@/components'
 import BookCard from '@/components/BookCard.vue'
+import BookCardSkeleton from '@/components/BookCardSkeleton.vue'
 
 // stores
 const booksStore = useBooksStore()
-const { books } = storeToRefs(booksStore)
+const { books, status } = storeToRefs(booksStore)
 
 const userStore = useUserStore()
 
@@ -48,17 +49,25 @@ onMounted(() => {
     <!-- Header -->
 
     <!-- List Books -->
-    <div
-      v-if="books.length"
-      class="grid-cols-1 md:grid sm:grid-cols-2 md:grid-cols-3 max-w-screen-2xl mx-auto p-4">
-      <div v-for="book in books">
-        <BookCard :book="book" />
+    <div v-if="status == 'loading'">
+      <div
+        class="grid-cols-1 md:grid sm:grid-cols-2 md:grid-cols-3 max-w-screen-2xl mx-auto p-4">
+        <BookCardSkeleton />
+        <BookCardSkeleton />
+        <BookCardSkeleton />
       </div>
     </div>
-
-    <div v-else class="text-center pt-4">
-      <p v-if="books.length == 0">No Books.</p>
-      <p v-else>loading...</p>
+    <div v-else>
+      <div
+        v-if="books.length"
+        class="grid-cols-1 md:grid sm:grid-cols-2 md:grid-cols-3 max-w-screen-2xl mx-auto p-4">
+        <div v-for="book in books">
+          <BookCard :book="book" />
+        </div>
+      </div>
+      <div v-else class="flex flex-1 items-center justify-center h-[500px]">
+        <p class="text-center text-base">No Books Available</p>
+      </div>
     </div>
 
     <div v-if="isAuthenticated()">
