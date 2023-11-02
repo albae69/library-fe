@@ -20,8 +20,8 @@ const props = defineProps<Props>()
   <Card class="w-full md:w-[300px] lg:w-[450px] shadow-l mb-4">
     <CardHeader>
       <CardTitle>{{ props.book.title }}</CardTitle>
-      <CardDescription>{{ props.book.author }}</CardDescription>
-      <CardDescription>{{ props.book.price }}</CardDescription>
+      <CardDescription>By: {{ props.book.author }}</CardDescription>
+      <CardDescription>IDR{{ props.book.price }}</CardDescription>
     </CardHeader>
     <CardContent>
       <div v-if="props.book.image != null">

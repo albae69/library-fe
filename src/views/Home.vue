@@ -1,44 +1,16 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
 
 import { useBooksStore } from '@/store/books'
-import { useUserStore } from '@/store/user'
-
-import { storeToRefs } from 'pinia'
-import { isAuthenticated } from '@/lib/utils'
-import { getUser } from '@/service/user'
-import { Button } from '@/components/ui/button'
-import { Header } from '@/components'
-import BookCard from '@/components/BookCard.vue'
-import BookCardSkeleton from '@/components/BookCardSkeleton.vue'
+import { Header, BookCard, BookCardSkeleton } from '@/components'
 
 // stores
 const booksStore = useBooksStore()
 const { books, status } = storeToRefs(booksStore)
 
-const userStore = useUserStore()
-
-const init = async () => {
-  try {
-    const response = await getUser()
-    if (response.success) {
-      userStore.saveUser(response.data)
-    }
-  } catch (error) {
-    console.log('error while init', error)
-  }
-}
-
-const logout = () => {
-  localStorage.removeItem('token')
-}
-
 onMounted(() => {
   booksStore.getAllBooks()
-
-  if (isAuthenticated()) {
-    init()
-  }
 })
 </script>
 
@@ -68,10 +40,6 @@ onMounted(() => {
       <div v-else class="flex flex-1 items-center justify-center h-[500px]">
         <p class="text-center text-base">No Books Available</p>
       </div>
-    </div>
-
-    <div v-if="isAuthenticated()">
-      <Button @click="logout">Logout</Button>
     </div>
     <!-- List Books -->
   </section>
