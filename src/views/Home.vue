@@ -9,14 +9,7 @@ import { isAuthenticated } from '@/lib/utils'
 import { getUser } from '@/service/user'
 import { Button } from '@/components/ui/button'
 import { Header } from '@/components'
-import {
-  Card,
-  // CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import BookCard from '@/components/BookCard.vue'
 
 // stores
 const booksStore = useBooksStore()
@@ -55,16 +48,11 @@ onMounted(() => {
     <!-- Header -->
 
     <!-- List Books -->
-    <div v-if="books.length" class="">
-      <div v-for="book in books" class="px-4 max-w-screen-2xl mx-auto my-4">
-        <Card class="w-full shadow-lg mb-4">
-          <CardHeader>
-            <CardTitle>{{ book.title }}</CardTitle>
-            <CardDescription>{{ book.author }}</CardDescription>
-          </CardHeader>
-          <!-- <CardContent> {{ book. }} </CardContent> -->
-          <CardFooter> {{ book.price }} </CardFooter>
-        </Card>
+    <div
+      v-if="books.length"
+      class="grid-cols-1 md:grid sm:grid-cols-2 md:grid-cols-3 max-w-screen-2xl mx-auto p-4">
+      <div v-for="book in books">
+        <BookCard :book="book" />
       </div>
     </div>
 

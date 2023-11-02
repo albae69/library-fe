@@ -15,6 +15,7 @@ export interface Book {
   author: string
   price: number
   stock: number
+  image: string
 }
 
 export interface UserResponse extends BaseResponse<User> {
