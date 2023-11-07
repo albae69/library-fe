@@ -15,5 +15,6 @@ app.use(pinia)
 app.use(Toast, {
   position: 'bottom-right',
   hideProgressBar: true,
+  timeout: 1500,
 })
 app.mount('#app')

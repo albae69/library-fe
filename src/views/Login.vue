@@ -85,12 +85,14 @@ onMounted(() => {
             v-model="email"
             type="email"
             placeholder="Email"
-            class="mb-4" />
+            class="mb-4"
+            required />
           <Input
             name="password"
             v-model="password"
             type="password"
-            placeholder="Password" />
+            placeholder="Password"
+            required />
         </CardContent>
         <CardFooter>
           <Button
@@ -100,6 +102,14 @@ onMounted(() => {
             <Loader2 v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" />
             Login
           </Button>
+          <p class="p-2 text-center">
+            doesn't have an account?
+            <strong
+              class="hover:cursor-pointer"
+              @click="router.push('/register')"
+              >Register</strong
+            >
+          </p>
         </CardFooter>
       </Card>
     </form>

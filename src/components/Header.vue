@@ -25,7 +25,10 @@ const onLogout = () => {
           >Login</Button
         >
       </div>
-      <div v-else>
+      <div v-else class="hidden items-center md:flex">
+        <p class="mr-4 hover:cursor-pointer" @click="router.push('/dashboard')">
+          Dashboard
+        </p>
         <Button class="bg-black text-white w-[100px]" @click="onLogout"
           >Logout</Button
         >

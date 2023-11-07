@@ -43,8 +43,8 @@ const handleSubmit = async (e: Event) => {
       router.replace('/login')
     }
   } catch (error: any) {
-    toast.error(error?.response?.data?.message)
     isLoading.value = false
+    toast.error(error?.response?.data?.message)
   }
 }
 </script>
@@ -63,18 +63,22 @@ const handleSubmit = async (e: Event) => {
             v-model="name"
             type="text"
             placeholder="Name"
-            class="mb-4" />
+            class="mb-4"
+            required />
+
           <Input
             name="email"
             v-model="email"
             type="email"
             placeholder="Email"
-            class="mb-4" />
+            class="mb-4"
+            required />
           <Input
             name="password"
             v-model="password"
             type="password"
-            placeholder="Password" />
+            placeholder="Password"
+            required />
         </CardContent>
         <CardFooter>
           <Button
@@ -84,6 +88,12 @@ const handleSubmit = async (e: Event) => {
             <Loader2 v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" />
             Register</Button
           >
+          <p class="p-2 text-center">
+            have an account?
+            <strong class="hover:cursor-pointer" @click="router.push('/login')"
+              >Login</strong
+            >
+          </p>
         </CardFooter>
       </Card>
     </form>
