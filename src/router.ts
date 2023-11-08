@@ -2,7 +2,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 // import local files
-import { Home, Login, Register, NotFound, Dashboard } from '@/views/'
+import {
+  Home,
+  Login,
+  Register,
+  NotFound,
+  Dashboard,
+  Books,
+  User,
+  OrderHistory,
+  PaymentHistory,
+  DashboardParent,
+} from '@/views/'
 
 const routes = [
   {
@@ -22,8 +33,29 @@ const routes = [
   },
   {
     path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard,
+    component: DashboardParent,
+    children: [
+      {
+        path: '',
+        component: Dashboard,
+      },
+      {
+        path: 'books',
+        component: Books,
+      },
+      {
+        path: 'user',
+        component: User,
+      },
+      {
+        path: 'order-history',
+        component: OrderHistory,
+      },
+      {
+        path: 'payment-history',
+        component: PaymentHistory,
+      },
+    ],
   },
   {
     path: '/:pathMatch(.*)*',

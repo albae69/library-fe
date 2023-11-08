@@ -18,8 +18,8 @@ export interface Book {
   image: string
 }
 
-export interface UserResponse extends BaseResponse<User> {
-  data: User
+export interface UserResponse extends BaseResponse<User[]> {
+  data: User[]
 }
 
 export interface User {
@@ -56,3 +56,29 @@ export interface RegisterRequest {
 }
 
 export interface Register {}
+
+export interface OrderResponse extends BaseResponse<Order[]> {
+  data: Order[]
+}
+
+export interface Order {
+  id: number
+  created_at: string
+  customer_id: number
+  total_price: number
+  users: User
+  order_items: Book[]
+}
+
+export interface PaymentResponse extends BaseResponse<Payment[]> {
+  data: Payment[]
+}
+
+export interface Payment {
+  id: number
+  created_at: string
+  order_id: number
+  payment_amount: number
+  payment_date: string
+  orders: Order
+}

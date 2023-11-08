@@ -1,4 +1,7 @@
 import axios from 'axios'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 let api = `${import.meta.env.VITE_API_URL}/api/`
 
@@ -20,10 +23,10 @@ instance.interceptors.request.use(async (req) => {
 // instance interceptor response
 instance.interceptors.response.use(
   (response) => {
-    // console.log('intercept response data', response.data);
     return Promise.resolve(response)
   },
   (error) => {
+    toast.error(JSON.stringify(error?.response?.data?.message))
     return Promise.reject(error)
   }
 )

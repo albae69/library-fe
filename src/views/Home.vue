@@ -34,9 +34,7 @@ onMounted(() => {
       <div
         v-if="books.length"
         class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-screen-2xl mx-auto p-4 gap-4">
-        <div v-for="book in books">
-          <BookCard :book="book" />
-        </div>
+        <BookCard v-for="book in books" :book="book" />
       </div>
       <div v-else class="flex flex-1 items-center justify-center h-[500px]">
         <p class="text-center text-base">No Books Available</p>

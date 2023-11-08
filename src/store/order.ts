@@ -1,25 +1,25 @@
-import { Book } from '@/types'
 import { defineStore } from 'pinia'
-import { getBooks } from '@/service/books'
+import { getOrder } from '@/service/order'
+import { Order } from '@/types'
 
 interface State {
-  books: Book[]
+  orders: Order[]
   status: string
 }
 
-export const useBooksStore = defineStore('books', {
+export const useOrderStore = defineStore('orders', {
   state: (): State => {
     return {
-      books: [],
+      orders: [],
       status: '',
     }
   },
   actions: {
-    async getAllBooks() {
+    async fetchAllOrder() {
       this.status = 'loading'
       try {
-        const response = await getBooks()
-        this.books = response.data
+        const response = await getOrder()
+        this.orders = response.data
         this.status = ''
         return response.data
       } catch (error) {

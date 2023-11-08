@@ -17,9 +17,8 @@ onMounted(() => {
 <template>
   <div className="min-h-screen mx-auto justify-center items-center">
     <main class="max-w-screen-2xl mx-auto flex">
-      <!-- Sidebar -->
-      <Sidebar class="hidden md:block" />
-      <!-- Sidebar -->
+      <Sidebar class="hidden md:block"></Sidebar>
+      <RouterView></RouterView>
     </main>
   </div>
 </template>

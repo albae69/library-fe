@@ -16,23 +16,8 @@ import { Button } from '@/components/ui/button'
 import { login } from '@/service/auth'
 import { useRouter } from 'vue-router'
 import { isAuthenticated } from '@/lib/utils'
-import { useUserStore } from '@/store/user'
-import { getUser } from '@/service/user'
 
 const router = useRouter()
-const userStore = useUserStore()
-
-const init = async () => {
-  try {
-    const response = await getUser()
-    if (response.success) {
-      userStore.saveUser(response.data)
-      router.replace('/')
-    }
-  } catch (error) {
-    console.log('error while init', error)
-  }
-}
 
 const email = ref('')
 const password = ref('')
@@ -52,7 +37,7 @@ const handleSubmit = async (e: Event) => {
       localStorage.setItem('token', response.data.token)
       toast.success(response?.message)
       isLoading.value = false
-      init()
+      router.replace('/')
     } else {
       isLoading.value = false
       toast.error(response?.message)

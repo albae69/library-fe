@@ -15,3 +15,7 @@ export function isAuthenticated() {
 
   return false
 }
+
+export function formatNumber(number: number) {
+  return number < 10 ? Number(`0${number}`) : number
+}
